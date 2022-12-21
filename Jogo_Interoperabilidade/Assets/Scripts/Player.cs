@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    public bool utilizaJson = true;
     Rigidbody2D rig;
-    
+
     
     public GameObject armTank;
     
@@ -18,21 +18,43 @@ public class Player : MonoBehaviour
     public Json json;
     public TMP_Text erro;
 
+
+    Xml xml;
+    JogoXml jogoXml;
+    string textoXml;
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         json = new Json(erro);
+
+        xml = new Xml();
+        jogoXml = new JogoXml();
         
     }
 
    
     void Update()
     {
-        json.Load();
-        if (json.turno == -1)
+
+        if (utilizaJson)
         {
-            movimentacao();
-            ArmMovimento();
+            json.Load();
+            if (json.turno == -1)
+            {
+                movimentacao();
+                ArmMovimento();
+            }
+        }
+        else
+        {
+            textoXml = xml.LendoXML();
+            jogoXml = xml.converterXmlParaObjeto(textoXml);
+            if (jogoXml.turno == -1)
+            {
+                movimentacao();
+                ArmMovimento();
+            }
         }
     }
 

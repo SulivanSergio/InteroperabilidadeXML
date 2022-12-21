@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Tiro : MonoBehaviour
 {
+    public bool utilizaJson = true;
 
     Rigidbody2D rig;
     public GameObject ponto;
@@ -29,18 +30,38 @@ public class Tiro : MonoBehaviour
     public Json json;
     public TMP_Text erro;
 
-
+    Xml xml;
+    JogoXml jogoXml;
+    string textoXml;
 
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        json = new Json(erro);
+        if (utilizaJson)
+        {
+            json = new Json(erro);
+        }
+        else
+        {
+            xml = new Xml();
+            jogoXml = new JogoXml();
+        }
     }
 
     
     void Update()
     {
-        json.Load();
+        if (utilizaJson)
+        {
+            json.Load();
+        }
+        else
+        {
+
+            textoXml = xml.LendoXML();
+            jogoXml = xml.converterXmlParaObjeto(textoXml);
+        }
+
 
     }
     private void FixedUpdate()
@@ -110,7 +131,34 @@ public class Tiro : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(nomeJogador))
         {
-            json.vencedor = nomeJogador;
+            if(nomeJogador == "Jogador1")
+            {
+                if (utilizaJson)
+                {
+                    json.vencedor = "Jogador2";
+                    json.Save();
+                }
+                else
+                {
+                    jogoXml.vencedor = "Jogador2";
+                    xml.EscreveXML(jogoXml.turno, jogoXml.vencedor);
+                }
+            }
+            else
+            {
+                if (utilizaJson)
+                {
+                    json.vencedor = "Jogador1";
+                    json.Save();
+                }
+                else
+                {
+                    jogoXml.vencedor = "Jogador1";
+                    xml.EscreveXML(jogoXml.turno, jogoXml.vencedor);
+                }
+
+            }
+            
             textJogador.text = "Acertou";
             SetPositionTiro();
 
@@ -126,8 +174,18 @@ public class Tiro : MonoBehaviour
             {
                 textJogador.text = "Errou";
                 SetPositionTiro();
-                json.SetTurno();
-                json.Save();
+
+                if (utilizaJson)
+                {
+                    json.SetTurno();
+                    json.Save();
+                }
+                else
+                {
+
+                    jogoXml.SetTurno();
+                    xml.EscreveXML(jogoXml.turno, jogoXml.vencedor);
+                }
             }
         }
 

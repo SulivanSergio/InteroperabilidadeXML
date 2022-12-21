@@ -1402,6 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae4df01d7d0af145b70d927ad101459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  utilizaJson: 0
   armTank: {fileID: 875576777}
   speed: 10
   json:
@@ -1645,6 +1646,10 @@ PrefabInstance:
       propertyPath: textJogador
       value: 
       objectReference: {fileID: 1326203521}
+    - target: {fileID: 5598975498086590180, guid: 6df9de97c6a894c4781562113c293443, type: 3}
+      propertyPath: utilizaJson
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5598975498716425231, guid: 6df9de97c6a894c4781562113c293443, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1884,6 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0250877dce3052a4a9f504ed97031e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  utilizaJson: 0
   json:
     turno: -1
     vencedor: 
@@ -3010,6 +3016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53a32f99fd497074f84e0eed877e28f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  utilizaJson: 0
   armTank: {fileID: 838233014}
   speed: 10
   json:
@@ -3099,6 +3106,10 @@ PrefabInstance:
       propertyPath: textJogador
       value: 
       objectReference: {fileID: 1947924175}
+    - target: {fileID: 5598975498086590180, guid: 6df9de97c6a894c4781562113c293443, type: 3}
+      propertyPath: utilizaJson
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5598975498716425230, guid: 6df9de97c6a894c4781562113c293443, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.2
