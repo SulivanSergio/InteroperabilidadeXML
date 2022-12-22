@@ -53,7 +53,7 @@ public class Player2 : MonoBehaviour
         {
             textoXml = xml.LendoXML();
             jogoXml = xml.converterXmlParaObjeto(textoXml);
-            if (jogoXml.turno == -1)
+            if (jogoXml.turno == 1)
             {
                 movimentacao();
                 ArmMovimento();
